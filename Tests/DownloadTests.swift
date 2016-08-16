@@ -262,7 +262,7 @@ class DownloadResponseTestCase: BaseTestCase {
         var error: NSError?
 
         // When
-        Alamofire.download(urlString, to: destination, withMethod: .get, parameters: parameters)
+        Alamofire.download(urlString, to: destination, withMethod: .get, parameters: parameters as [String: AnyObject])
             .response { responseRequest, responseResponse, _, responseError in
                 request = responseRequest
                 response = responseResponse
@@ -350,7 +350,7 @@ class DownloadResumeDataTestCase: BaseTestCase {
 
         var request: URLRequest?
         var response: HTTPURLResponse?
-        var data: AnyObject?
+        var data: Data?
         var error: NSError?
 
         // When
@@ -383,7 +383,7 @@ class DownloadResumeDataTestCase: BaseTestCase {
 
         var request: URLRequest?
         var response: HTTPURLResponse?
-        var data: AnyObject?
+        var data: Data?
         var error: NSError?
 
         // When
@@ -410,7 +410,7 @@ class DownloadResumeDataTestCase: BaseTestCase {
 
         XCTAssertNotNil(download.resumeData, "resume data should not be nil")
 
-        if let responseData = data as? Data, let resumeData = download.resumeData {
+        if let responseData = data, let resumeData = download.resumeData {
             XCTAssertEqual(responseData, resumeData, "response data should equal resume data")
         } else {
             XCTFail("response data or resume data was unexpectedly nil")

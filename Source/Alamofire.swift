@@ -333,12 +333,12 @@ public func upload(_ stream: InputStream, with urlRequest: URLRequestConvertible
 /// - parameter headers:                 The HTTP headers. `nil` by default.
 /// - parameter encodingCompletion:      The closure called when the `MultipartFormData` encoding is complete.
 public func upload(
-    multipartFormData: (MultipartFormData) -> Void,
+    multipartFormData: @escaping (MultipartFormData) -> Void,
     usingThreshold encodingMemoryThreshold: UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold,
     to urlString: URLStringConvertible,
     withMethod method: HTTPMethod,
     headers: [String: String]? = nil,
-    encodingCompletion: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?)
+    encodingCompletion: (@escaping (SessionManager.MultipartFormDataEncodingResult) -> Void)?)
 {
     return SessionManager.default.upload(
         multipartFormData: multipartFormData,
@@ -372,7 +372,7 @@ public func upload(
 /// - parameter urlRequest:              The URL request.
 /// - parameter encodingCompletion:      The closure called when the `MultipartFormData` encoding is complete.
 public func upload(
-    multipartFormData: (MultipartFormData) -> Void,
+    multipartFormData: @escaping (MultipartFormData) -> Void,
     usingThreshold encodingMemoryThreshold: UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold,
     with urlRequest: URLRequestConvertible,
     encodingCompletion: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?)
